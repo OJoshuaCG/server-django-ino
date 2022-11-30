@@ -39,8 +39,10 @@ wheels/
 # Environments 
 .env 
 .venv 
+pyvenv.cfg
 env/ 
 venv/ 
 ENV/ 
 env.bak/ 
 venv.bak/ 
+venv*/
