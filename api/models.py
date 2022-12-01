@@ -14,7 +14,6 @@ class Usuario(models.Model):
 
 class Hogar(models.Model):
     id_hogar = models.AutoField(primary_key=True)
-    # codigo_hogar = models.IntegerField()
     nombre = models.CharField(max_length=30)
     pin = models.SmallIntegerField()
     lugar = models.CharField(max_length=30)
@@ -41,21 +40,25 @@ class Modulo(models.Model):
 class Dispositivo(models.Model):
     ESTADOS = (
         ('0', "Apagado"),
-        ('1', "Encendido")
+        ('1', "Encendido"),
     )
     id_dispositivo = models.AutoField(primary_key=True)
-    id_hogar = models.ForeignKey(Hogar, on_delete=models.CASCADE)
-    id_modulo = models.ForeignKey(Modulo, on_delete=models.CASCADE)
+    id_hogar = models.ForeignKey(Hogar, 
+        on_delete=models.CASCADE)
+    id_modulo = models.ForeignKey(Modulo, 
+        on_delete=models.CASCADE)
     nombre = models.CharField(max_length=20)
     descripcion = models.CharField(max_length=50)
     estado = models.CharField(max_length=1, choices=ESTADOS)
     valor = models.SmallIntegerField()
+    pin = models.PositiveSmallIntegerField()
 
 
 class Control(models.Model):
     id_usuario = models.ForeignKey(Usuario, 
         on_delete=models.CASCADE)
-    id_hogar = models.ForeignKey(Hogar, on_delete=models.CASCADE)
+    id_hogar = models.ForeignKey(Hogar, 
+        on_delete=models.CASCADE)
     fecha = models.DateTimeField(auto_now_add=True)
 
 
